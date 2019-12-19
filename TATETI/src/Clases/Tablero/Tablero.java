@@ -6,12 +6,13 @@ public class Tablero implements Tableable {
 	private String[][] tablero;
 	public static final int ALTO_TABLERO = 3;
 	public static final int ANCHO_TABLERO = 3;
-	private int elementosTotalesDisponibles;
+	private static final int elementosTotales = ALTO_TABLERO * ANCHO_TABLERO;
+	private int elementosDisponibles;
 	private LetrasJugadores ganador;
 
 	public Tablero() {
 		this.tablero = new String[ALTO_TABLERO][ANCHO_TABLERO];
-		this.elementosTotalesDisponibles = ALTO_TABLERO * ANCHO_TABLERO;
+		this.elementosDisponibles = ALTO_TABLERO * ANCHO_TABLERO;
 		inicializarTablero();
 		this.ganador = null;
 	}
@@ -30,6 +31,7 @@ public class Tablero implements Tableable {
 		if (esPosicionValida(alto, ancho)) {
 			if (estaPosicionVacia(alto, ancho)) {
 				this.tablero[alto][ancho] = "|  " + valor + "  |";
+				this.elementosDisponibles--;
 			}
 		}
 
@@ -38,7 +40,8 @@ public class Tablero implements Tableable {
 	private boolean estaPosicionVacia(int alto, int ancho) {
 		boolean estaPosocionVacia = true;
 
-		if (getValorTablero(alto, ancho) == "X" || getValorTablero(ancho, alto) == "O") {
+		if (getValorTablero(alto, ancho).equals(LetrasJugadores.O.getValorAsociado())
+				|| getValorTablero(alto, ancho).equals(LetrasJugadores.X.getValorAsociado())) {
 			estaPosocionVacia = false;
 			throw new IllegalArgumentException("La ubicación pretendida del valor no está vacía.");
 		}
@@ -74,26 +77,12 @@ public class Tablero implements Tableable {
 
 	@Override
 	public boolean estaLleno() {
-		return cantidadDeElementosIngresados() == this.elementosTotalesDisponibles;
+		return cantidadDeElementosIngresados() == elementosTotales;
 	}
 
 	@Override
 	public int cantidadDeElementosIngresados() {
-		int contador = 0;
-
-		for (int i = 0; i < ALTO_TABLERO; i++) {
-			for (int j = 0; j < ANCHO_TABLERO; j++) {
-				if (!estaPosicionVacia(i, j)) {
-					contador++;
-				}
-			}
-		}
-
-		if (contador < 0) {
-			throw new IllegalAccessError("No se pueden contar los elementos ingresados.");
-		}
-
-		return contador;
+		return elementosTotales - this.elementosDisponibles;
 	}
 
 	private String obtenerJugadorDelTablero(int alto, int ancho) {
@@ -136,7 +125,7 @@ public class Tablero implements Tableable {
 
 	private LetrasJugadores obtenerLetraGanador(String ganador) {
 		LetrasJugadores letraGanador = null;
-		if (ganador.equals("X")) {
+		if (ganador.contains("X")) {
 			letraGanador = LetrasJugadores.X;
 		} else {
 			letraGanador = LetrasJugadores.O;

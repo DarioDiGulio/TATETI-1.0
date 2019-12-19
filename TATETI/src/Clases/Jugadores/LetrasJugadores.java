@@ -1,17 +1,16 @@
 package Clases.Jugadores;
 
 public enum LetrasJugadores {
-	X(1), O(2);
-	
-	private int numeroAsociado;
+	X("|  X  |"), O("|  O  |");
 
-	private LetrasJugadores(int numeroAsociado) {
-		this.numeroAsociado = numeroAsociado;
+	private String valorAsociado;
+
+	private LetrasJugadores(String valorAsociado) {
+		this.valorAsociado = valorAsociado;
 	}
 
-	public int getNumeroAsociado() {
-		return numeroAsociado;
+	public String getValorAsociado() {
+		return valorAsociado;
 	}
-	
-	
+
 }

@@ -23,7 +23,7 @@ public class TestTablero {
 
 	private static void mostrarTablero() {
 		Tablero tablero = new Tablero();
-		mostrar(tablero.toString(), "Tablero Vacío");
+		mostrar(tablero.toString(), "Tablero Vacï¿½o");
 		tablero = llenarTablero(tablero);
 		mostrar(tablero.toString(), "Tablero Lleno");
 
@@ -235,9 +235,9 @@ public class TestTablero {
 		} catch (Exception e) {
 			mensaje += "2. " + e;
 		}
-		if (tablero.getValorTablero(0, 1).equals(LetrasJugadores.X.toString())) {
+		if (tablero.getValorTablero(0, 1).equals(LetrasJugadores.X.getValorAsociado())) {
 			tablero.setValor(0, 2, LetrasJugadores.O.toString());
-			if (tablero.getValorTablero(0, 2).equals(LetrasJugadores.O.toString())) {
+			if (tablero.getValorTablero(0, 2).equals(LetrasJugadores.O.getValorAsociado())) {
 				mensaje += "2. El tablero puede recibir valores correctamente.";
 			}
 		} else {
@@ -256,7 +256,7 @@ public class TestTablero {
 			tablero.setValor(1, 0, LetrasJugadores.X.toString());
 			tablero.setValor(1, 2, LetrasJugadores.X.toString());
 		} catch (Exception exception) {
-			mensaje += "Excepción " + exception;
+			mensaje += "ExcepciÃ³n " + exception;
 		}
 		if (tablero.cantidadDeElementosIngresados() == 4) {
 			mensaje += "3. El tablero puede contar correctamente los valores que tiene insertados.";

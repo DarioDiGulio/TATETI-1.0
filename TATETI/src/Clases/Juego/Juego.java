@@ -12,13 +12,12 @@ public class Juego {
 	private JugadorX jugadorX;
 	private JugadorO jugadorO;
 	private Jugador primero;
-	private Historial historial;
 
 	public Juego() {
 		this.tablero = new Tablero();
 		this.jugadorX = new JugadorX();
 		this.jugadorO = new JugadorO();
-		this.historial = new Historial();
+		this.sortearPrimero();
 	}
 
 	public Jugador getPrimero() {
@@ -74,7 +73,7 @@ public class Juego {
 			Ronda ronda = pedirRonda(this.primero);
 			cargarRonda(ronda, this.primero);
 			mostrarTablero();
-			if (!hayGanador()) {
+			if (sePuedaSeguirJugando()) {
 				ronda = pedirRonda(segundo);
 				cargarRonda(ronda, segundo);
 				mostrarTablero();

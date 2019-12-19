@@ -33,7 +33,7 @@ public class TestJuego {
 			juego.cargarRonda(new Ronda(1, 3, LetrasJugadores.X));
 			juego.cargarRonda(new Ronda(2, 3, LetrasJugadores.X));
 			juego.cargarRonda(new Ronda(3, 1, LetrasJugadores.X));
-			if (juego.getTablero().obtenerGanador() == "O") {
+			if (juego.getTablero().obtenerGanador().contains("O")) {
 				mensaje += "2. El juego soporta una victoria del jugador O correctamente." + "\n";
 			} else {
 				mensaje += "2. El juego no soporta una victoria del jugador O correctamente." + "\n";
@@ -57,7 +57,7 @@ public class TestJuego {
 			juego.cargarRonda(new Ronda(1, 3, LetrasJugadores.O));
 			juego.cargarRonda(new Ronda(2, 3, LetrasJugadores.O));
 			juego.cargarRonda(new Ronda(3, 1, LetrasJugadores.O));
-			if (juego.getTablero().obtenerGanador() == "X") {
+			if (juego.getTablero().obtenerGanador().contains("X")) {
 				mensaje += "2. El juego soporta una victoria del jugador X correctamente." + "\n";
 			} else {
 				mensaje += "2. El juego no soporta una victoria del jugador X correctamente." + "\n";
