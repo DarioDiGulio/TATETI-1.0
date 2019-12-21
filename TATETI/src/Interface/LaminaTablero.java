@@ -4,19 +4,35 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import Clases.Juego.Juego;
+
 public class LaminaTablero extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private Juego juego;
+	private int altoTotal;
+	private int anchoTotal;
+
+//	public LaminaTablero() {
+//		setTamanio();
+//		crearJuego();
+//	}
+
+	private void crearJuego() {
+		this.juego = new Juego();
+	}
+
+	private void setTamanio() {
+		Ventana ventana = new Ventana();
+		this.anchoTotal = ventana.getAncho();
+		this.altoTotal = ventana.getAlto();
+	}
 
 	public void paintComponent(Graphics g) {
+		crearJuego();
+		setTamanio();
 		super.paintComponent(g);
-		Ventana ventana = new Ventana();
-		int ancho = ventana.getAncho();
-		int alto = ventana.getAlto();
-		g.drawLine(ancho / 4, alto / 4, ancho - (ancho / 4), alto / 4);
-		g.drawLine(ancho / 4, alto - (alto / 4), ancho - (ancho / 4), alto - (alto / 4));
-		g.drawLine(ancho / 3, alto / 4, ancho / 3, alto - (alto / 3));
-		g.drawLine((ancho / 5) * 2, alto / 10, (ancho / 5) * 3, alto / 10);
+		g.drawString(this.juego.getTablero().toString(), this.altoTotal / 2, this.anchoTotal / 2);
 	}
 
 }

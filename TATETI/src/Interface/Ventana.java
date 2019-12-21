@@ -14,13 +14,13 @@ public class Ventana extends JFrame {
 	public Ventana() {
 		setTamanio();
 		setLocationRelativeTo(null);
-		setTitle("Hola mundo");
+		setTitle("TATETI 1.0 by Upward");
 		setLogo();
 		add(new LaminaTablero());
 	}
 
 	private void setLogo() {
-		Image logo = Toolkit.getDefaultToolkit().getImage("src/Interface/Imagenes/logoUpward.png");
+		Image logo = Toolkit.getDefaultToolkit().getImage("TATETI/src/Interface/Imagenes/logoUpward.png");
 		setIconImage(logo);
 	}
 
